@@ -1,0 +1,110 @@
+{
+	"name": "@jeftelabs/colors",
+	"version": "1.0.0",
+	"description": "A wrapper on top of kleur with ability to write test against the color functions",
+	"main": "build/index.js",
+	"type": "module",
+	"files": [
+		"build",
+		"!build/tests",
+		"!build/bin"
+	],
+	"exports": {
+		".": "./build/index.js",
+		"./types": "./build/src/types.js"
+	},
+	"scripts": {
+		"pretest": "npm run lint",
+		"test": "c8 npm run quick:test",
+		"lint": "eslint .",
+		"format": "prettier --write .",
+		"typecheck": "tsc --noEmit",
+		"precompile": "npm run lint && npm run clean",
+		"compile": "tsdown && tsc --emitDeclarationOnly --declaration",
+		"clean": "del-cli build",
+		"build": "npm run compile",
+		"version": "npm run build",
+		"prepublishOnly": "npm run build",
+		"release": "release-it",
+		"quick:test": "node --import=@jeftelabs/exec --enable-source-maps bin/test.ts",
+    "prepare": "husky",
+    "commitlint": "commitlint --edit",
+    "commit": "cz"
+	},
+	"devDependencies": {
+    "@arapucajs/eslint-config": "^1.1.2",
+    "@arapucajs/prettier": "^1.1.1",
+    "@arapucajs/tsconfig": "^1.0.0",
+    "@commitlint/cli": "^21.2.3",
+    "@commitlint/config-conventional": "^21.2.3",
+    "@t8ngs/assert": "^1.0.0",
+		"@t8ngs/runner": "^1.0.1",
+		"@jeftelabs/exec": "^1.0.1",
+		"@types/node": "^25.0.1",
+		"c8": "^10.1.3",
+    "commitizen": "^4.3.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^9.1.7",
+		"del-cli": "^7.0.0",
+		"eslint": "^9.39.1",
+		"prettier": "^3.7.4",
+		"tsdown": "^0.17.3",
+		"typescript": "^5.9.3"
+	},
+	"dependencies": {
+		"kleur": "^4.1.5"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/jeftelabs/colors.git"
+	},
+	"bugs": {
+		"url": "https://github.com/jeftelabs/colors/issues"
+	},
+	"keywords": [
+		"kleur",
+		"colors"
+	],
+	"author": "Jefte Costa <jeftelabs@gmail.com>",
+	"license": "MIT",
+	"homepage": "https://github.com/jeftelabs/colors#readme",
+	"publishConfig": {
+		"access": "public",
+		"provenance": true
+	},
+	"tsdown": {
+		"entry": [
+			"./index.ts",
+			"./src/types.ts"
+		],
+		"outDir": "./build",
+		"clean": true,
+		"format": "esm",
+		"minify": "dce-only",
+		"fixedExtension": false,
+		"dts": false,
+		"treeshake": false,
+		"sourcemaps": false,
+		"target": "esnext"
+	},
+	"c8": {
+		"reporter": [
+			"text",
+			"html"
+		],
+		"exclude": [
+			"tests/**"
+		]
+	},
+	"prettier": "@arapucajs/prettier",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && npx cz --hook || true"
+    }
+  }
+}
