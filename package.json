@@ -27,24 +27,24 @@
 		"prepublishOnly": "npm run build",
 		"release": "release-it",
 		"quick:test": "node --import=@jeftelabs/exec --enable-source-maps bin/test.ts",
-    "prepare": "husky",
-    "commitlint": "commitlint --edit",
-    "commit": "cz"
+		"prepare": "husky",
+		"commitlint": "commitlint --edit",
+		"commit": "cz"
 	},
 	"devDependencies": {
-    "@arapucajs/eslint-config": "^1.1.2",
-    "@arapucajs/prettier": "^1.1.1",
-    "@arapucajs/tsconfig": "^1.0.0",
-    "@commitlint/cli": "^21.2.3",
-    "@commitlint/config-conventional": "^21.2.3",
-    "@t8ngs/assert": "^1.0.0",
+		"@arapucajs/eslint-config": "^1.1.2",
+		"@arapucajs/prettier": "^1.1.1",
+		"@arapucajs/tsconfig": "^1.0.0",
+		"@commitlint/cli": "^21.2.3",
+		"@commitlint/config-conventional": "^21.2.3",
+		"@t8ngs/assert": "^1.0.0",
 		"@t8ngs/runner": "^1.0.1",
 		"@jeftelabs/exec": "^1.0.1",
 		"@types/node": "^25.0.1",
 		"c8": "^10.1.3",
-    "commitizen": "^4.3.2",
-    "cz-conventional-changelog": "^3.3.0",
-    "husky": "^9.1.7",
+		"commitizen": "^4.3.2",
+		"cz-conventional-changelog": "^3.3.0",
+		"husky": "^9.1.7",
 		"del-cli": "^7.0.0",
 		"eslint": "^9.39.1",
 		"prettier": "^3.7.4",
@@ -97,14 +97,14 @@
 		]
 	},
 	"prettier": "@arapucajs/prettier",
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "husky": {
-    "hooks": {
-      "prepare-commit-msg": "exec < /dev/tty && npx cz --hook || true"
-    }
-  }
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
+	},
+	"husky": {
+		"hooks": {
+			"prepare-commit-msg": "exec < /dev/tty && npx cz --hook || true"
+		}
+	}
 }
